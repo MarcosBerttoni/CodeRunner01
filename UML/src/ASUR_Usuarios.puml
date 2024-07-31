@@ -1,0 +1,83 @@
+@startuml
+class Usuario {
+  - idUsuario: int
+  - nombre: String
+  - email: String
+  - contrasenia: String
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + validarEmail(email: String): boolean
+  + cambiarContrasenia(nuevaContrasenia: String): void
+}
+
+class Perfil {
+  - usuario: Usuario
+  - numeroTelefono: int
+  + agregarTelefono(numeroTelefono: int): void
+  + eliminarTelefono(numeroTelefono: int): void
+}
+
+class Administrador {
+  + crearActividad(actividad: Actividad): void
+  + gestionarSalon(salon: Salon): void
+  + gestionarSocio(socio: Socio): void
+}
+
+class Socio {
+  - tipoSocio: String
+  + reservarSalon(salon: Salon): void
+  + registrarseEnActividad(actividad: Actividad): void
+}
+
+class NoSocio {
+  + reservarSalon(salon: Salon): void
+}
+
+class Salon {
+  - idSalon: int
+  - nombre: String
+  - capacidad: int
+  - ubicacion: String
+  + verificarDisponibilidad(fecha: Date): boolean
+}
+
+class Actividad {
+  - idActividad: int
+  - nombre: String
+  - descripcion: String
+  - fecha: Date
+  - costoTicket: double
+  - capacidad: int
+  + registrarParticipante(socio: Socio): void
+  + cancelarRegistro(socio: Socio): void
+}
+
+class Reserva {
+  - idReserva: int
+  - usuario: Usuario
+  - salon: Salon
+  - fechaReserva: Date
+  + cancelarReserva(): void
+}
+
+Usuario <|-- Socio
+Usuario <|-- NoSocio
+Usuario <|-- Administrador
+
+Perfil "1" -- "1" Usuario : pertenece a >
+Usuario "1" -- "0..*" Perfil : tiene >
+
+Socio "1" -- "0..*" Actividad : participa en >
+Socio "1" -- "0..*" Reserva : hace >
+NoSocio "1" -- "0..*" Reserva : hace >
+
+Reserva "1" -- "1" Usuario : pertenece a >
+Reserva "1" -- "1" Salon : pertenece a >
+
+Salon "1" -- "0..*" Reserva : tiene >
+Salon "1" -- "0..*" Actividad : aloja >
+
+Administrador "1" -- "0..*" Actividad : crea >
+Administrador "1" -- "0..*" Salon : gestiona >
+Administrador "1" -- "0..*" Socio : gestiona >
+@enduml

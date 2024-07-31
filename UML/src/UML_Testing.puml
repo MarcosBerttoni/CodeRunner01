@@ -1,0 +1,62 @@
+@startuml
+
+class Usuario {
+  - nombreUsuario: string
+  - contraseña: string
+  + login()
+}
+
+class Socio {
+  - nombre: string
+  - documentoIdentidad: string
+  - domicilio: string
+  - correoElectronico: string
+  - dificultadAuditiva: string
+  + registrar()
+  + modificarDatos()
+}
+
+class NoSocio {
+  - nombre: string
+  - correoElectronico: string
+}
+
+class Administrador {
+  - nombre: string
+  - correoElectronico: string
+  + gestionarUsuarios()
+}
+
+class Actividad {
+  - codigoInterno: string
+  - fechaHoraRealizacion: string
+  - lugar: string
+  - duracion: string
+  - descripcion: string
+  + registrar()
+}
+
+class Salon {
+  - identificador: string
+  - capacidad: int
+  + gestionarSalon()
+}
+
+class Reserva {
+  - fechaHoraReserva: string
+  - fechaHoraActividad: string
+  - duracionActividad: string
+  - indicadorPagoSenia: boolean
+  + gestionarReserva()
+}
+
+Usuario <|-- Socio
+Usuario <|-- NoSocio
+Usuario <|-- Administrador
+
+Socio "1" -- "n" Actividad
+Actividad "1" -- "1" Salon
+Socio "1" -- "n" Reserva
+Salon "1" -- "n" Reserva
+
+@enduml

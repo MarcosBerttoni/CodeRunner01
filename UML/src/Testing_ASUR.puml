@@ -1,0 +1,51 @@
+@startgantt
+Project starts 2024-07-01
+
+
+title Cronograma de Pruebas - ASUR
+
+[Análisis de Requerimientos] lasts 15 days
+[Análisis de Requerimientos] starts 2024-07-01
+
+
+[Diseño de Casos de Prueba] lasts 15 days
+[Diseño de Casos de Prueba] starts 2024-07-16
+
+
+[Preparación del Entorno de Pruebas] lasts 15 days
+[Preparación del Entorno de Pruebas] starts 2024-07-31
+
+
+[Ejecución (Ciclo 1)] lasts 16 days
+[Ejecución (Ciclo 1)] starts 2024-08-15
+
+
+[Ejecución (Ciclo 2)] lasts 16 days
+[Ejecución (Ciclo 2)] starts 2024-08-31
+
+
+[Ejecución (Ciclo 3)] lasts 16 days
+[Ejecución (Ciclo 3)] starts 2024-09-16
+
+
+[Finalización y Entrega del Informe de Pruebas] lasts 8 days
+[Finalización y Entrega del Informe de Pruebas] starts 2024-10-02
+
+
+[Análisis de Requerimientos] --> [Diseño de Casos de Prueba]
+[Diseño de Casos de Prueba] --> [Preparación del Entorno de Pruebas]
+[Preparación del Entorno de Pruebas] --> [Ejecución (Ciclo 1)]
+[Ejecución (Ciclo 1)] --> [Ejecución (Ciclo 2)]
+[Ejecución (Ciclo 2)] --> [Ejecución (Ciclo 3)]
+[Ejecución (Ciclo 3)] --> [Finalización y Entrega del Informe de Pruebas]
+
+legend right
+  Análisis de Requerimientos: 1-15 Julio
+  Diseño de Casos de Prueba: 16-30 Julio
+  Preparación del Entorno de Pruebas: 1-15 Agosto
+  Ejecución (Ciclo 1): 16-31 Agosto
+  Ejecución (Ciclo 2): 1-16 Septiembre
+  Ejecución (Ciclo 3): 17 Septiembre - 2 Octubre
+  Finalización y Entrega del Informe: 3-10 Octubre
+end legend
+@endgantt

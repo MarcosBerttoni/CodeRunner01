@@ -1,0 +1,24 @@
+@startuml
+
+left to right direction
+actor NoSocio as NoSocio
+actor Socio as Socio
+
+
+rectangle "Gestión de Socio" {
+  (Ver Información Personal) <-- Socio
+  (Modificar Datos Personales) <-- Socio
+  (Ver Actividades Disponibles) <-- Socio
+  (Inscribirse en Actividad) <-- Socio
+  (Ver Reservas Realizadas) <-- Socio
+}
+
+rectangle "Gestión de NoSocio" {
+  NoSocio --> (Ver Información Personal)
+  NoSocio --> (Registrarse como NoSocio)
+  NoSocio --> (Ver Actividades Disponibles)
+  NoSocio --> (Inscribirse en Actividad)
+  NoSocio --> (Ver Reservas Realizadas)
+}
+
+@enduml

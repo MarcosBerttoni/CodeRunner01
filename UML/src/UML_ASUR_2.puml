@@ -1,0 +1,102 @@
+@startuml
+
+class Usuario {
+  - idUsuario: int
+  - nombre: String
+  - correoElectronico: String
+  - contrasena: String
+  - tipo: String
+  + iniciarSesion()
+  + cerrarSesion()
+  + registrarUsuario()
+  + modificarDatosUsuario()
+}
+
+class Socio {
+  - numeroDeSocio: int
+  - categoria: String
+  - nombre: String
+  - documentoIdentidad: String
+  - domicilio: String
+  - telefono: String
+  - correoElectronico: String
+  - dificultadAuditiva: String
+  - usoLenguajeSenias: String
+  - pertenenciaSubcomisiones: String
+  + crearSocio()
+  + leerSocio()
+  + actualizarSocio()
+  + eliminarSocio()
+}
+
+class Administrador {
+  - idAdmin: int
+  - nombre: String
+  - correoElectronico: String
+  - telefono: String
+  + gestionarUsuarios()
+  + gestionarSocios()
+  + gestionarActividades()
+  + gestionarSalones()
+}
+
+class NoSocio {
+  - idNoSocio: int
+  - nombre: String
+  - correoElectronico: String
+  - telefono: String
+  + crearReserva()
+}
+
+class Actividad {
+  - codigo: int
+  - nombre: String
+  - fecha: Date
+  - hora: Time
+  - lugar: String
+  - duracion: String
+  - descripcion: String
+  - costo: float
+  + crearActividad()
+  + leerActividad()
+  + actualizarActividad()
+  + eliminarActividad()
+}
+
+class Salon {
+  - identificador: int
+  - tipo: String
+  - fechaReserva: Date
+  - horaReserva: Time
+  - datosContactoReserva: String
+  - duracion: String
+  - cantidadPersonas: int
+  - indicadorPagoSenia: boolean
+  - saldoPendiente: float
+  - montoTotal: float
+  + crearSalon()
+  + leerSalon()
+  + actualizarSalon()
+  + eliminarSalon()
+}
+
+class Gestor {
+  - idGestor: int
+  - nombre: String
+  - correoElectronico: String
+  - telefono: String
+  + gestionarSocios()
+  + gestionarActividades()
+  + gestionarSalones()
+}
+
+Usuario <|-- Socio : hereda de
+Usuario <|-- Administrador : hereda de
+Usuario <|-- NoSocio : hereda de
+
+
+Gestor -- "0..*" Socio : gestiona >
+Gestor -- "0..*" Actividad : gestiona >
+Gestor -- "0..*" Salon : gestiona >
+
+@enduml

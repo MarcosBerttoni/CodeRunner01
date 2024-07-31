@@ -1,0 +1,91 @@
+@startuml
+enum CategoriaSocio {
+  Fundadores
+  Escolares
+  Cadetes
+  Suscriptor
+  Activos
+  Colaboradores
+  Honorarios
+}
+
+class Usuario {
+  - idUsuario: int
+  - nombre: String
+  - correoElectronico: String
+  - contrasena: String
+  + iniciarSesion()
+  + cerrarSesion()
+  + registrarUsuario()
+  + modificarDatosUsuario()
+}
+
+class Socio {
+  - numeroDeSocio: int
+  - categoria: CategoriaSocio
+  - documentoIdentidad: String
+  - domicilio: String
+  - telefono: String
+  - dificultadAuditiva: String
+  - usoLenguajeSenias: String
+  - pertenenciaSubcomisiones: String
+  + crearSocio()
+  + leerSocio()
+  + actualizarSocio()
+  + eliminarSocio()
+}
+
+class Administrador {
+  + gestionarUsuarios()
+  + gestionarSocios()
+  + gestionarActividades()
+  + gestionarSalones()
+}
+
+class NoSocio {
+  + crearReserva()
+}
+
+class Actividad {
+  - codigo: int
+  - nombre: String
+  - fecha: Date
+  - hora: Time
+  - lugar: String
+  - duracion: String
+  - descripcion: String
+  - costo: float
+  + crearActividad()
+  + leerActividad()
+  + actualizarActividad()
+  + eliminarActividad()
+}
+
+class Salon {
+  - identificador: int
+  - tipo: String
+  - fechaReserva: Date
+  - horaReserva: Time
+  - datosContactoReserva: String
+  - duracion: String
+  - cantidadPersonas: int
+  - indicadorPagoSenia: boolean
+  - saldoPendiente: float
+  - montoTotal: float
+  + crearSalon()
+  + leerSalon()
+  + actualizarSalon()
+  + eliminarSalon()
+}
+
+Usuario <|-- Socio
+Usuario <|-- Administrador
+Usuario <|-- NoSocio
+
+Socio "1" -- "0..*" Actividad : participa en >
+Salon "1" -- "0..*" Actividad : aloja >
+Socio "0..*" -- "1" CategoriaSocio : tiene
+Socio "1" -- "1" Salon : reserva
+NoSocio "1" -- "1" Salon : realiza reserva
+
+@enduml

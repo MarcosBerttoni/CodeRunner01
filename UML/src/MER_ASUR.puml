@@ -1,0 +1,116 @@
+@startuml
+enum CategoriaSocio {
+  Fundadores
+  Escolares
+  Cadetes
+  Suscriptor
+  Activos
+  Colaboradores
+  Honorarios
+}
+
+enum TipoSalón {
+    Gimnasio
+    Cancha
+    SalaDeReuniones
+    Barbacoa
+}
+
+class Usuario {
+  - idUsuario: int
+  - nombre: String
+  - apellido: String
+  - telefono: int
+  - domicilio: String
+  - correoElectronico: String
+  - contrasena: String
+  - tipo: Usuario
+  + iniciarSesion()
+  + cerrarSesion()
+  + registrarUsuario()
+  + modificarDatosUsuario()
+  + listarUsuarios()
+}
+
+class Socio {
+  - numeroDeSocio: int
+  - categoria: CategoriaSocio
+  - documentoIdentidad: String
+  - dificultadAuditiva: String
+  - usoLenguajeSenias: String
+  - pertenenciaSubcomisiones: String
+  - tipoSocio: CategoriaSocio
+  + crearSocio()
+  + leerSocio()
+  + actualizarSocio()
+  + eliminarSocio()
+}
+
+class Administrador {
+  + gestionarUsuarios()
+  + gestionarSocios()
+  + gestionarActividades()
+  + gestionarSalones()
+}
+
+class NoSocio {
+  + crearReserva()
+  + listarReservas()
+}
+
+class Actividad {
+  - idActividad: int
+  - nombre: String
+  - fecha: Date
+  - hora: Time
+  - lugar: String
+  - duracion: String
+  - descripcion: String
+  - costo: float
+  + crearActividad()
+  + leerActividad()
+  + actualizarActividad()
+  + eliminarActividad()
+}
+
+class Salón {
+  - idSalón: int
+  - tipo: TipoSalón
+  - cantidadPersonas: int
+  + crearSalon()
+  + leerSalon()
+  + actualizarSalon()
+  + eliminarSalon()
+}
+class Reserva {
+    - IdReserva: int
+    - FechaReserva: Date
+    - HoraReserva: Time
+    - Duración: int
+    - IndicadorPagoSeña: boolean
+    - DatoContacto: Usuario
+    - SaldoPendiente: float
+    - MontoTotal: float
+    + agregarReserva()
+    + actualizarReserva()
+    + cancelarReserva()
+    + eliminarReserva()
+}
+
+Usuario <|-- Socio
+Usuario <|-- Administrador
+Usuario <|-- NoSocio
+
+Administrador "1" -- "1..*" Reserva : GestionaReserva >
+Administrador "1" -- "1..*" Salón : GestionaSalon >
+Administrador "1" -- "1..*" Actividad : GestionaActividad >
+Socio "1..*" -- "0..*" Reserva : Hace >
+NoSocio "1..*" -- "0..*" Reserva : Realiza >
+Socio "1" -- "0..*" Actividad : ¨Participa en >
+Salón "1" -- "0..*" Actividad : aloja >
+Salón "0..*" -- "1" TipoSalón : tiene >
+Socio "0..*" -- "1" CategoriaSocio : tiene >
+NoSocio "0..*" -- "1" Actividad : Participa
+Reserva "1..*" -- "1..*" Salón : Tiene >
+
+@enduml

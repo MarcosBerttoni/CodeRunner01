@@ -1,0 +1,42 @@
+@startuml
+
+left to right direction
+
+actor "Administrador" as Admin
+actor "Socio" as Member
+actor "No Socio" as NonMember
+
+rectangle "Gestión de Usuarios" {
+    Admin -- (Registrar Usuario)
+    Admin -- (Modificar Usuario)
+    Admin -- (Eliminar Usuario)
+}
+
+rectangle "Gestión de Socios" {
+    Admin -- (Crear Socio)
+    Admin -- (Leer Socio)
+    Admin -- (Actualizar Socio)
+    Admin -- (Eliminar Socio)
+    Member -- (Leer Propio Socio)
+    NonMember -- (Leer Propio Socio)
+}
+
+rectangle "Gestión de Actividades" {
+    Admin -- (Crear Actividad)
+    Admin -- (Leer Actividad)
+    Admin -- (Actualizar Actividad)
+    Admin -- (Eliminar Actividad)
+    Member -- (Leer Actividad)
+    NonMember -- (Leer Actividad)
+}
+
+rectangle "Gestión de Salones" {
+    Admin -- (Crear Reserva)
+    Admin -- (Leer Reserva)
+    Admin -- (Actualizar Reserva)
+    Admin -- (Eliminar Reserva)
+    Member -- (Crear Reserva Propio Socio)
+    NonMember -- (Crear Reserva)
+}
+
+@enduml
