@@ -330,14 +330,73 @@ public class Main {
 
 
         //ValidarDatos Prueba
-        String dato = "1234994";
-        String dato2 = "12349999965";
-        System.out.println("Validar datos numeros: "+validar(dato));
-        System.out.println("Validar datos numeros: "+validar(dato2));
+//        String dato = "1234994";
+//        String dato2 = "12349999965";
+//        System.out.println("Validar datos numeros: "+validar(dato));
+//        System.out.println("Validar datos numeros: "+validar(dato2));
+
+
+        //Ejercicio Examen Saber la palabra más larde dentro de una lista
+//        String[] lista = {"Marcos","Seba","Mati","Marcela","Teo"};
+//        System.out.println("Lista de nombre "+Arrays.deepToString(lista));
+//        System.out.println("El nombre más largo es: "+Arrays.deepToString(masLargoMasCorto(lista)));
+
+        //Recorrer los bordes de una matriz y mostrar la suma de los valores, se recorre de forma horario/Antihorario
+        //dependiendo de una variable Booleana.
+        int[][] matriz = {{1,2,3,4},
+                          {5,6,7,8},
+                          {3,4,5,6},
+                          {5,6,7,8}};
+        for(int i=0;i<matriz.length;i++){
+            for(int j=0;j<matriz[i].length;j++){
+                System.out.print(matriz[i][j]+" ");
+            }
+            System.out.println();
+        }
+        //System.out.println("Suma borde matriz "+sumarBordes(matriz));
+        System.out.println("Suma borde matriz "+sumarBordeMatriz(matriz,true));
+
 
 
 
     }
+    public static int sumarBordeMatriz(int[][] matriz, boolean op){
+       int suma = 0;
+
+        if(op) {
+            for (int i = 0; i < matriz.length; i++) {
+                for(int j=0;j<matriz[i].length;j++) {
+                    if(i==0 && j<matriz.length || i==0 && j==matriz.length || j==matriz.length && i<matriz.length || i<matriz.length && j==0) {
+                        System.out.print(matriz[i][j] + ",");
+                        suma += matriz[i][j];
+                    }
+                }
+            }
+        }else {
+
+        }
+
+        return suma;
+    }
+
+    public static String[] masLargoMasCorto(String[] lista){
+        String[] resultado = new String[2];
+        String nombreLargo = lista[0];
+        String nombreCorto = lista[0];
+
+        for(String nombre: lista){
+            if(nombre.length() > nombreLargo.length() ){
+                nombreLargo = nombre;
+            }else if (nombre.length() < nombreCorto.length()){
+                nombreCorto = nombre;
+            }
+        }
+        resultado[1]=nombreCorto;
+        resultado[0]=nombreLargo;
+        return resultado;
+
+    }
+
     public static boolean validar(String dato){
         //boolean resultado =  false;
         String numeros = "0123456789";

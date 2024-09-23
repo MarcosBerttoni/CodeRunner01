@@ -1,0 +1,102 @@
+@startuml
+title Diagrama de Clases para el Sistema de Gestión de ASUR
+class Usuario {
+- nombres: String
+- apellidos: String
+- tipoDocumento: String
+- numeroDocumento: String
+- fechaNacimiento: Date
+- domicilio: String
+- telefonos: List<String>
+- email: String
+- contraseña: String
+- tipoUsuario: TipoUsuario
+- categoriaSocio: CategoriaSocio
+- dificultadAuditiva: Boolean
+- manejaLenguajeDeSeñas: Boolean
+- subcomision: Subcomision
++ registrar()
++ modificar()
++ eliminar()
++ login()
++ modificarDatosPropios()
+}
+enum TipoUsuario {
+Socio
+NoSocio
+AuxiliarAdministrativo
+}
+class CategoriaSocio {
+- nombre: String
+- descripcion: String
+}
+class Subcomision {
+- nombre: String
+- descripcion: String
+}
+class Perfil {
+- nombre: String
+- descripcion: String
+- estado: String
++ ingresar()
++ modificar()
++ eliminar()
+}
+class Funcionalidad {
+- nombre: String
+- descripcion: String
++ alta()
++ modificar()
++ eliminar()
+}
+class Auditoria {
+- fechaHora: Date
+- terminal: String
+- usuario: Usuario
+- operacion: String
++ registrarOperacion()
++ generarReporte()
+}
+class Actividad {
+- nombre: String
+- descripcion: String
+- fecha: Date
+- tipoActividad: TipoActividad
++ ingresar()
++ modificar()
++ eliminar()
++ inscribirse()
++ cancelarInscripcion()
+}
+class TipoActividad {
+- nombre: String
+- descripcion: String
++ ingresar()
++ modificar()
++ eliminar()
+}
+class Espacio {
+- nombre: String
+- ubicacion: String
++ ingresar()
++ modificar()
++ eliminar()
++ reservar()
++ cancelarReserva()
+}
+class Pago {
+- fecha: Date
+- monto: Float
+- usuario: Usuario
++ ingresar()
++ modificar()
+}
+Usuario "1" -- "0..*" Perfil
+Usuario "1" -- "0..*" Funcionalidad
+Usuario "1" -- "0..*" Auditoria
+Usuario "1" -- "0..*" Actividad
+Usuario "1" -- "0..*" Espacio
+Usuario "1" -- "0..*" Pago
+Perfil "1" -- "0..*" Funcionalidad
+Perfil "0..*" -- "0..*" Usuario
+@enduml
