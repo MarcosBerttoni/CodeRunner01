@@ -26,7 +26,16 @@ public class ListaDeTareas {
 
     // Agrega una tarea al final de la lista
     public void addTask(String nombre, int prioridad) {
+        if(listaDeTareas.isEmpty()==false) {
+            if(listaDeTareas.getFirst().prioridad < prioridad) {
+                listaDeTareas.addFirst(new Tarea(nombre, prioridad));
+            }else {
+                listaDeTareas.addLast(new Tarea(nombre, prioridad));
+            }
+        } else {
         listaDeTareas.add(new Tarea(nombre,prioridad));
+        }
+
     }
 
     // Inserta una tarea en un índice específico
